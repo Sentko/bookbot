@@ -36,8 +36,8 @@ but it still should be case insensitive...?)
     
     sorted_count = sorted(unique_character_count.items(), reverse=True, key=sort_on) #4) Sorting
     print(f"""
---- Begin report of books/frankenstein.txt ---
-{word_count} words found in frankenstein.txt
+--- Begin report of books/{book_title}.txt ---
+{word_count} words found in {book_title}.txt
 
 
 """)    
