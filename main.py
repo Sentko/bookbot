@@ -1,4 +1,7 @@
-def main(): 
+def main():
+    def sort_on(item):
+        return item(1)
+     
     word_count = 0
     file_contents = ''
     unique_character_count = {}    
@@ -18,13 +21,18 @@ def main():
     #######################################################
     
     
-    for i in file_contents.lower():
-        if i in unique_character_count:
-            unique_character_count[i] += 1
-        else:
-            unique_character_count[i] = 1
-    print(unique_character_count)
+    for i in file_contents.lower().isalpha():
+        if i.isalpha():           
+            if i in unique_character_count:
+                unique_character_count[i] += 1
+            else:
+                unique_character_count[i] = 1
     return unique_character_count
+    
+    ########################################################
+    
+    sorted_counts = sorted(unique_character_count.items(), key=sort_on, reverse=True)
+    print(sorted_counts)
     
         
 
