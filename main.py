@@ -1,38 +1,51 @@
 def main():
+    book_title = input(f"""
+What is the book's title ?
+(PS : only works if you write 'frankenstein',
+but it still should be case insensitive...?)
+""").lower()
     def sort_on(item):
-        return item(1)
+        return item[1]
      
     word_count = 0
     file_contents = ''
-    unique_character_count = {}    
+    unique_character_count = {}
+    sorted_count = []    
     #######################################################
     
-    with open("books/frankenstein.txt") as f: #Read-Prints frankenstein.txt
-        file_contents = f.read()              
-        print(file_contents)                  
+    with open(f"books/{book_title}.txt") as f: #1) Read book_title.txt and
+        file_contents = f.read()               #   store it in file_contents                  
     
     #######################################################
     
-    words = file_contents.lower().split()
+    words = file_contents.lower().split() #2) counts words
     for i in words:
         word_count += 1
-    print(word_count)
 
     #######################################################
     
     
-    for i in file_contents.lower().isalpha():
+    for i in file_contents.lower(): #3) counts unique chars
         if i.isalpha():           
             if i in unique_character_count:
                 unique_character_count[i] += 1
             else:
                 unique_character_count[i] = 1
-    return unique_character_count
     
     ########################################################
     
-    sorted_counts = sorted(unique_character_count.items(), key=sort_on, reverse=True)
-    print(sorted_counts)
+    sorted_count = sorted(unique_character_count.items(), reverse=True, key=sort_on) #4) Sorting
+    print(f"""
+--- Begin report of books/frankenstein.txt ---
+{word_count} words found in frankenstein.txt
+
+
+""")    
+    for char, count in sorted_count:
+        print(f"'{char} has been found {count} times in the text.'")
+    print("--- End report ---")
+        
+    ########################################################
     
         
 
